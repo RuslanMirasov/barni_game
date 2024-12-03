@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="./../assets/img/favicon.ico" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="В День Рождения Барни в Пятёрочке можно почти всё! Разгадай 5 ребусов и получи раскраски." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./../assets/css/styles.min.css" />
+    <title>Барни | Разгадай 5 ребусов и получи раскраски.</title>
+  </head>
+  <body>
+    <!--preloader-->
+    <div class="preloader"><div></div></div>
+
+    <!--Header-->
+    <header class="header">
+      <nav class="container">
+        <a href="#" target="_blank">
+          <img src="./../assets/img/logo.png" alt="Барни логотип" width="110" />
+        </a>
+        <a href="#" target="_blank">
+          <img src="./../assets/img/5ka_logo.png" alt="Пятёрочка логотип" width="70" />
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="background-images">
+          <!--фон-->
+          <picture>
+            <source media="(min-width:1024px)" srcset="./../assets/img/bg.jpg" />
+            <source media="(max-width:1023px)" srcset="./../assets/img/bg_mobil.jpg" />
+            <img src="./../assets/img/bg_mobil.jpg" alt="Барни" />
+          </picture>
+          <!--шарики-->
+          <picture>
+            <source media="(min-width:1024px)" srcset="./../assets/img/baloons.png" />
+            <source media="(max-width:1023px)" srcset="./../assets/img/baloons_mobil.png" />
+            <img src="./../assets/img/baloons_mobil.png" alt="Барни" />
+          </picture>
+          <!--Надписть с днём рождения-->
+          <picture class="birthday-bg-image">
+            <source media="(min-width:1024px)" srcset="./../assets/img/birthday.png" />
+            <source media="(max-width:1023px)" srcset="./../assets/img/birthday_mobil.png" />
+            <img src="./../assets/img/birthday_mobil.png" alt="Барни" />
+          </picture>
+        </div>
+        <div class="container">
+          <div class="sliders">
+            <div class="swiper swiper--text">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <h2 class="subtitle">Вы в начале увлекательного пути! <br />Отгадайте первое слово</h2>
+                </div>
+                <div class="swiper-slide">
+                  <h2 class="subtitle">На шаг ближе, чтобы выиграть подарок. <br />Разгадайте второй ребус</h2>
+                </div>
+                <div class="swiper-slide">
+                  <h2 class="subtitle">Вы на полпути к подарку. <br />Раскройте третье слово</h2>
+                </div>
+                <div class="swiper-slide">
+                  <h2 class="subtitle">Практически у цели! <br />Решите четвертый ребус</h2>
+                </div>
+                <div class="swiper-slide">
+                  <h2 class="subtitle">Последний шаг до заветного подарка! <br />Угадайте пятое слово</h2>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper swiper--images">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img src="./../assets/img/step1.jpg" alt="Барни" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./../assets/img/step2.jpg" alt="Барни" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./../assets/img/step3.jpg" alt="Барни" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./../assets/img/step4.jpg" alt="Барни" />
+                </div>
+                <div class="swiper-slide">
+                  <img src="./../assets/img/step5.jpg" alt="Барни" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <form action="/" class="form" data-gameform>
+            <input type="hidden" name="step" value="1" data-step />
+            <input type="text" name="answer" placeholder="Введите слово" data-anwer />
+            <button type="submit" class="button">Проверить</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal">
+      <div class="modal-backdrop js-popupClose">
+        <div class="popup">
+          <button class="popup__close js-popupClose"></button>
+          <h2 class="title title--h2">Заголовок</h2>
+          <p class="title title--h3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur possimus ipsa quod suscipit alias nulla iste nesciunt accusantium
+            dolore, labore, officiis cum aliquam, eveniet ut optio amet illum eos maiores.
+          </p>
+          <button class="button button--white js-popupClose">Следующее слово</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./../assets/js/scripts.js" defer></script>
+  </body>
+</html>
