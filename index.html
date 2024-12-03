@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="В День Рождения Барни в Пятёрочке можно почти всё! Разгадай 5 ребусов и получи раскраски." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/css/styles.min.css" />
+    <title>Барни | Разгадай 5 ребусов и получи раскраски.</title>
+  </head>
+  <body>
+    <!--preloader-->
+    <div class="preloader"></div>
+
+    <!--Header-->
+    <header class="header">
+      <nav class="container">
+        <a href="#" target="_blank">
+          <img src="/assets/img/logo.png" alt="Барни логотип" width="110" />
+        </a>
+        <a href="#" target="_blank">
+          <img src="/assets/img/5ka_logo.png" alt="Пятёрочка логотип" width="70" />
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="background-images">
+          <!--фон-->
+          <picture>
+            <source media="(min-width:1024px)" srcset="/assets/img/bg_main.jpg" />
+            <source media="(max-width:1023px)" srcset="/assets/img/bg_mobil.jpg" />
+            <img src="/assets/img/bg_mobil.jpg" alt="Барни" />
+          </picture>
+          <!--шарики-->
+          <picture>
+            <source media="(min-width:1024px)" srcset="/assets/img/baloons.png" />
+            <source media="(max-width:1023px)" srcset="/assets/img/baloons_mobil.png" />
+            <img src="/assets/img/baloons_mobil.png" alt="Барни" />
+          </picture>
+          <!--Надписть с днём рождения-->
+          <picture class="birthday-bg-image">
+            <source media="(min-width:1024px)" srcset="/assets/img/birthday.png" />
+            <source media="(max-width:1023px)" srcset="/assets/img/birthday_mobil.png" />
+            <img src="/assets/img/birthday_mobil.png" alt="Барни" />
+          </picture>
+          <!--Медвежонок-->
+          <picture class="barni-image">
+            <source media="(min-width:1024px)" srcset="/assets/img/barni.png" />
+            <source media="(max-width:1023px)" srcset="/assets/img/barni_mobil.png" />
+            <img src="/assets/img/barni_mobil.png" alt="Барни" />
+          </picture>
+        </div>
+        <div class="container">
+          <article class="hero">
+            <h1 class="title title--h1">В День Рождения <br />Барни в Пятёрочке <br />можно почти всё!</h1>
+            <div class="subtitle">
+              <div class="prize">
+                <img src="/assets/img/prize_mini.png" alt="Барни" />
+              </div>
+              <span>Разгадай 5 ребусов <br />и получи раскраски</span>
+            </div>
+            <button type="button" class="button">Играть</button>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
