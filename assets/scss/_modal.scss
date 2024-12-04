@@ -24,7 +24,7 @@
 .modal-backdrop {
   display: flex;
   position: relative;
-  padding: 50px 20px;
+  padding: 50px 14px;
   width: 100%;
   height: auto;
   min-height: 100vh;
@@ -60,6 +60,18 @@
   .button {
     margin-top: 14px;
   }
+  @media (max-width: 767px) {
+    max-width: 340px;
+    padding: 30px 20px 30px 20px;
+    .title--h2 {
+      text-align: center;
+      font-size: 28px;
+    }
+    .button {
+      width: 100%;
+      padding: 10px;
+    }
+  }
 }
 
 .open .popup {
@@ -76,6 +88,61 @@
   }
   p {
     display: none;
+  }
+  &:before {
+    content: '';
+    display: block;
+    width: 214px;
+    height: 250px;
+    margin: 0 auto;
+    margin-top: -120px;
+    margin-bottom: 0px;
+    background: url('../img/error.png') no-repeat center center/cover;
+  }
+  @media (max-width: 767px) {
+    margin-top: 50px;
+    max-width: 340px;
+    .title--h2 {
+      text-align: center;
+      font-size: 28px;
+    }
+  }
+}
+
+.confirm .popup {
+  .title--h2,
+  .title--h3,
+  .button {
+    position: relative;
+    z-index: 2;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 425px;
+    height: 425px;
+    bottom: 0px;
+    right: -20px;
+    z-index: 0;
+    background: url('../img/confirm.png') no-repeat center center/cover;
+    @media (max-width: 767px) {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      bottom: -30px;
+      right: 20px;
+      margin-top: -50px;
+    }
+  }
+  @media (max-width: 767px) {
+    .title--h2 {
+      max-width: 95%;
+      text-align: left;
+    }
+    p {
+      font-size: 18px;
+    }
   }
 }
 
@@ -110,5 +177,18 @@
 
   &:hover {
     transform: rotate(90deg);
+  }
+
+  @media (max-width: 1023px) {
+    width: 40px;
+    height: 40px;
+    top: -22px;
+    margin-left: -18px;
+    z-index: 3;
+    &:before,
+    &:after {
+      content: '';
+      height: 3px;
+    }
   }
 }

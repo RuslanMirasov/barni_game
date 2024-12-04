@@ -1,0 +1,65 @@
+@keyframes expandHeight {
+  0% {
+    height: 0px;
+  }
+  50% {
+    height: 104px;
+  }
+  100% {
+    height: 0px;
+  }
+}
+
+.preloader {
+  display: flex;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 20px;
+  background: var(--bg);
+  z-index: 1000;
+  transition: 0.3s;
+  visibility: visible;
+  opacity: 1;
+  &.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  > div {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: flex-end;
+    width: 140px;
+    height: 104px;
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 140px;
+      height: 104px;
+      background: url('../img/logo.png') no-repeat center bottom;
+      background-size: 140px 104px;
+    }
+
+    &:before {
+      filter: grayscale(1);
+      opacity: 0.3;
+    }
+
+    &:after {
+      height: 104px;
+      animation: expandHeight 1s linear infinite;
+    }
+  }
+}

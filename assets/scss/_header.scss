@@ -1,0 +1,29 @@
+.header {
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 5;
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 20px;
+  }
+
+  @media (max-width: 1439px) {
+    nav {
+      gap: 26px;
+      a img {
+        width: 46px;
+      }
+      a:first-child {
+        img {
+          width: 84px;
+        }
+      }
+    }
+  }
+}

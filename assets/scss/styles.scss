@@ -51,6 +51,14 @@ html {
   font-weight: 600;
 }
 
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  &.loaded {
+    overflow-y: auto;
+  }
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -70,88 +78,6 @@ button {
   border: none;
   background: none;
   cursor: pointer;
-}
-
-@keyframes expandHeight {
-  0% {
-    height: 0px;
-  }
-  50% {
-    height: 104px;
-  }
-  100% {
-    height: 0px;
-  }
-}
-
-.preloader {
-  display: flex;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  gap: 20px;
-  background: var(--bg);
-  z-index: 1000;
-  transition: 0.3s;
-  visibility: visible;
-  opacity: 1;
-  &.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-  > div {
-    display: flex;
-    position: absolute;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: flex-end;
-    width: 140px;
-    height: 104px;
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 140px;
-      height: 104px;
-      background: url('../img/logo.png') no-repeat center bottom;
-      background-size: 140px 104px;
-    }
-
-    &:before {
-      filter: grayscale(1);
-      opacity: 0.3;
-    }
-
-    &:after {
-      height: 104px;
-      animation: expandHeight 1s linear infinite;
-    }
-  }
-}
-
-.header {
-  display: block;
-  position: fixed;
-  width: 100%;
-  left: 0px;
-  top: 0px;
-  z-index: 5;
-
-  nav {
-    display: flex;
-    align-items: center;
-    gap: 36px;
-    padding: 20px;
-  }
 }
 
 .section {
@@ -175,52 +101,14 @@ button {
   max-width: 1200px;
   padding: 0px 20px;
   margin: 0 auto;
-}
-
-.background-images {
-  position: absolute;
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  pointer-events: none;
-  user-select: none;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    transition: 0.6s;
-    opacity: 0;
+  @media (max-width: 1365px) {
+    max-width: 1000px;
   }
-  .birthday-bg-image img {
-    width: 530px;
-    height: auto;
-    right: 0px;
-    left: auto;
+  @media (max-width: 1023px) {
+    max-width: 600px;
   }
-  .barni-image img {
-    width: auto;
-    height: 78%;
-    min-height: 600px;
-    top: auto;
-    bottom: 0;
-    left: 50%;
-    transition: 0.6s ease-out 0.2s;
-    opacity: 0;
-    transform: translate(0px, 50px);
-  }
-}
-
-.loaded .background-images {
-  img {
-    opacity: 1;
-  }
-  .barni-image img {
-    opacity: 1;
-    transform: translate(0px, 0px);
+  @media (max-width: 767px) {
+    max-width: 360px;
   }
 }
 
@@ -230,6 +118,19 @@ button {
   line-height: 1;
   &.title--h1 {
     font-size: 62px;
+    @media (max-width: 1599px) {
+      font-size: 58px;
+    }
+    @media (max-width: 1365px) {
+      font-size: 48px;
+    }
+    @media (max-width: 767px) {
+      font-size: 32px;
+      text-align: center;
+    }
+    @media (max-width: 359px) {
+      font-size: 28px;
+    }
   }
   &.title--h2 {
     font-size: 48px;
@@ -246,8 +147,23 @@ button {
   font-size: 32px;
   line-height: 1.2;
   gap: 24px;
-  @media (max-width: 767px) {
+  @media (max-width: 1599px) {
+    font-size: 28px;
+  }
+  @media (max-width: 1439px) {
     font-size: 24px;
+  }
+  @media (max-width: 767px) {
+    font-size: 18px;
+    text-align: center;
+    justify-content: center;
+  }
+  @media (max-width: 374px) {
+    font-size: 16px;
+    gap: 10px;
+    br {
+      display: none;
+    }
   }
 }
 
@@ -257,119 +173,28 @@ button {
   width: 100%;
   gap: 20px;
   transition: 0.3s;
-}
-
-.prize {
-  display: inline-flex;
-  position: relative;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  background: var(--yellow);
-  border: 4px solid var(--color);
-  border-radius: 200px;
-  z-index: 1;
-  width: 104px;
-  height: 104px;
-  picture {
-    position: absolute;
-    left: 0px;
-    width: 110%;
-    max-width: 110%;
-    height: auto;
-    max-height: auto;
+  margin: 100px auto 40px auto;
+  @media (max-width: 1599px) {
+    margin: 100px auto 40px auto;
   }
-  > img {
-    position: absolute;
-    left: -5px;
-    width: 120%;
-    max-width: 120%;
-    height: auto;
-    max-height: auto;
+  @media (max-width: 1439px) {
+    gap: 14px;
   }
-  &.prize--big {
-    width: 244px;
-    height: 244px;
-    background: var(--color);
-    border: 8px solid var(--text-color);
-    box-shadow: 0px 4px 250px 50px var(--text-color);
+  @media (max-width: 1023px) {
+    margin: 130px auto 520px auto;
+    gap: 20px;
   }
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
-  gap: 14px;
-  list-style: none;
-  margin-top: -10px;
-  li {
-    display: block;
-  }
-  .button {
-    min-width: 350px;
-  }
-}
-
-.button {
-  display: inline-flex;
-  position: relative;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  height: 70px;
-  padding: 20px 40px;
-  min-width: 230px;
-  font-size: 24px;
-  line-height: 1;
-  font-family: var(--font);
-  font-weight: 900;
-  border-radius: 100px;
-  z-index: 1;
-  border: none;
-  color: inherit;
-  text-transform: uppercase;
-  margin-top: 10px;
-  outline: none;
-  cursor: pointer;
-  transition: 0.2s;
-  background: var(--color);
-  box-shadow: 0px 4px 0px var(--color-shadow);
-  transform: translate(0px, 0px);
-  text-decoration: none;
-  text-align: center;
-  &:hover {
-    background: var(--color-hover);
-  }
-  &:active {
-    transform: translate(0px, 2px);
-    box-shadow: 0px 2px 0px var(--color-shadow);
-  }
-
-  &.button--yellow {
-    background: var(--yellow);
-    box-shadow: 0px 4px 0px var(--yellow-shadow);
-    color: var(--color);
-    &:hover {
-      background: var(--yellow-hover);
+  @media (max-width: 767px) {
+    margin: 120px auto 420px auto;
+    .title--h1.title--hero {
+      text-align: left;
     }
-    &:active {
-      box-shadow: 0px 2px 0px var(--yellow-shadow);
+    .button {
+      width: 100%;
     }
-  }
-
-  &.button--white {
-    background: var(--text-color);
-    box-shadow: 0px 4px 0px var(--color-shadow);
-    color: var(--color);
-    &:hover {
-      background: rgba(255, 255, 255, 0.9);
-    }
-    &:active {
-      box-shadow: 0px 2px 0px var(--color-shadow);
+    .subtitle.subtitle--hero {
+      text-align: left;
+      justify-content: flex-start;
     }
   }
 }
@@ -380,6 +205,10 @@ button {
   width: 100%;
   max-width: 400px;
   margin: 16px auto;
+  margin-bottom: 100px;
+  @media (max-width: 1439px) {
+    margin-bottom: 40px;
+  }
   button {
     width: 100%;
     margin-top: 16px;
@@ -414,6 +243,16 @@ button {
   position: relative;
   max-width: 868px;
   margin: 0 auto;
+  margin-top: 100px;
+  @media (max-width: 1439px) {
+    max-width: 650px;
+    margin-top: 50px;
+  }
+  @media (max-width: 767px) {
+    .subtitle {
+      font-size: 23px;
+    }
+  }
 }
 
 .swiper {
@@ -434,4 +273,12 @@ button {
   width: 100%;
 }
 
+@media (max-width: 767px) {
+}
+
+@import 'preloader';
+@import 'background';
+@import 'header';
+@import 'prize';
+@import 'buttons';
 @import 'modal';
