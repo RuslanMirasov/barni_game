@@ -1,0 +1,45 @@
+.navigation {
+  display: flex;
+  position: relative;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 14px;
+  list-style: none;
+  margin: 6px 0px 14px 0px;
+  li {
+    display: flex;
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.3);
+    color: var(--text-color);
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+    font-size: 14px;
+    line-height: 28px;
+    transition: 0.3s;
+    pointer-events: all;
+    cursor: pointer;
+    &:hover {
+      color: var(--bg);
+      background: var(--text-color);
+    }
+    &.yellow {
+      background: var(--yellow);
+      color: var(--text-color);
+      pointer-events: none;
+    }
+    &.green {
+      background: var(--green);
+      color: var(--text-color);
+      pointer-events: none;
+    }
+  }
+}

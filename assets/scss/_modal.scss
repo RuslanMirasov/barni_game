@@ -82,6 +82,9 @@
 .error .popup {
   max-width: 620px;
   text-align: center;
+  .rules {
+    display: none;
+  }
   .title--h2 {
     max-width: 100%;
     font-size: 38px;
@@ -110,6 +113,9 @@
 }
 
 .confirm .popup {
+  .rules {
+    display: none;
+  }
   .title--h2,
   .title--h3,
   .button {
@@ -146,8 +152,93 @@
   }
 }
 
+.tips .popup {
+  max-width: 320px;
+  padding: 30px 20px;
+  text-align: center;
+  .title.title--h2 {
+    font-size: 26px;
+    line-height: 1;
+    div {
+      display: block;
+      z-index: 1;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border-radius: 30px;
+      border: 6px solid var(--yellow);
+      box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.2);
+    }
+  }
+  .title.title--h3 {
+    display: none;
+  }
+  .rules {
+    display: none;
+  }
+}
+
+.rules .popup {
+  max-width: 320px;
+  padding: 0px 10px 20px 10px;
+  text-align: center;
+  .title--h2 {
+    display: block;
+    font-size: 28px;
+    margin-top: -180px;
+  }
+  .title--h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    margin: 5px 0px;
+    strong {
+      font-family: var(--font);
+      font-weight: 900;
+    }
+  }
+  .example {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    background: var(--yellow);
+    color: var(--color);
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 80px;
+    margin-top: 10px;
+  }
+  .rules__image {
+    position: relative;
+    z-index: -1;
+    margin-top: -20px;
+    margin-bottom: -5px;
+  }
+
+  .rules__example-image {
+    position: relative;
+    z-index: -1;
+    margin: 10px auto;
+    &.shadow {
+      width: 90%;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 30px;
+    }
+  }
+
+  .rules-step {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
 .popup__close {
-  display: flex;
+  display: none;
   position: relative;
   justify-content: center;
   align-items: center;
@@ -162,6 +253,9 @@
   margin-left: 20px;
   transition: 0.3s;
   transform: rotate(-0deg);
+  &.js-popupClose {
+    display: flex;
+  }
   &:before,
   &:after {
     content: '';
@@ -190,5 +284,20 @@
       content: '';
       height: 3px;
     }
+  }
+}
+
+.modal-content {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+  position: absolute;
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    z-index: 1;
+    position: relative;
   }
 }

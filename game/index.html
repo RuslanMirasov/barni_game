@@ -51,6 +51,15 @@
         </div>
         <div class="container">
           <div class="sliders">
+            <nav>
+              <ul class="navigation step-navigation">
+                <li onclick="goToStep(1)">1</li>
+                <li onclick="goToStep(2)">2</li>
+                <li onclick="goToStep(3)">3</li>
+                <li onclick="goToStep(4)">4</li>
+                <li onclick="goToStep(5)">5</li>
+              </ul>
+            </nav>
             <div class="swiper swiper--text">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
@@ -92,29 +101,88 @@
             </div>
           </div>
           <form action="/" class="form" data-gameform>
+            <button type="button" class="tip-button" data-tip>?</button>
             <input type="hidden" name="step" value="1" data-step />
             <input type="text" name="answer" placeholder="Введите слово" data-anwer />
-            <button type="submit" class="button">Проверить</button>
+            <ul class="buttons">
+              <li><button type="submit" class="button">Проверить</button></li>
+              <li><button type="button" class="button button--yellow" data-skip>Пропустить</button></li>
+            </ul>
+            <button type="button" class="how-to-play">Как играть?</button>
           </form>
         </div>
       </section>
     </main>
 
     <div class="modal">
-      <div class="modal-backdrop js-popupClose">
+      <div class="modal-backdrop">
         <div class="popup">
-          <button class="popup__close js-popupClose"></button>
-          <h2 class="title title--h2">Заголовок</h2>
-          <p class="title title--h3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur possimus ipsa quod suscipit alias nulla iste nesciunt accusantium
-            dolore, labore, officiis cum aliquam, eveniet ut optio amet illum eos maiores.
-          </p>
-          <button class="button button--white js-popupClose">Следующее слово</button>
+          <button class="popup__close"></button>
+          <!--Контент стандартной всплывашки-->
+          <div class="modal-content confirm error tips">
+            <h2 class="title title--h2" data-title>Заголовок</h2>
+            <p class="title title--h3" data-subtitle>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur possimus ipsa quod suscipit alias nulla iste nesciunt accusantium
+              dolore, labore, officiis cum aliquam, eveniet ut optio amet illum eos maiores.
+            </p>
+            <button class="button button--white js-popupClose" data-button>Следующее слово</button>
+          </div>
+
+          <!--Правила-->
+          <div class="modal-content rules">
+            <div class="rules-step rules-step--1 active">
+              <img src="./../assets/img/rules.png" alt="Барни" class="rules__image" />
+              <h2 class="title title--h3">
+                В честь своего дня рождения Барни предлагает сыграть <br />в увлекательную игру <br />и разгадать ребусы!
+              </h2>
+              <p class="subtitle">Вам предстоит отгадать 5 зашифрованных слов, а в конце получить подарки от Барни.</p>
+              <button class="button button--white full" onclick="ruleStepChange(2)">Как играть?</button>
+            </div>
+            <div class="rules-step rules-step--2">
+              <img src="./../assets/img/rules_baloons.png" alt="Барни" class="rules__image" />
+              <h2 class="title title--h2">Как играть?</h2>
+              <ul class="navigation">
+                <li class="yellow">1</li>
+                <li onclick="ruleStepChange(3)">2</li>
+              </ul>
+              <img src="./../assets/img/example1.png" alt="Барни" class="rules__example-image shadow" />
+              <p class="subtitle">
+                Запятые показывают, что у слова, которое изображает картинка, нужно убрать буквы - в зависимости от количества запятых;
+              </p>
+              <p class="subtitle">
+                Если одна или несколько букв стоят слева или справа от картинки, их нужно добавить к слову, которое изображает картинка, в начале или
+                в конце соответственно;
+              </p>
+              <p class="subtitle">В одну букву может быть вписана другая. В этом случае используем предлог «в»;</p>
+              <p class="subtitle">
+                В ребусе над рисунком может располагаться ряд чисел. Число обозначает номер буквы в слове, которое изображает картинка. Нужно
+                использовать только те буквы и в том порядке, как указаны числа.
+              </p>
+
+              <p class="example">Пример: <br />(ДВА - ВА) + (В О Р) + (НИК (КИНО)) <br />ДВОРНИК</p>
+              <button class="button button--white full" onclick="ruleStepChange(3)">Дальше</button>
+            </div>
+            <div class="rules-step rules-step--3">
+              <img src="./../assets/img/rules_baloons.png" alt="Барни" class="rules__image" />
+              <h2 class="title title--h2">Как играть?</h2>
+              <ul class="navigation">
+                <li onclick="ruleStepChange(2)">1</li>
+                <li class="yellow">2</li>
+              </ul>
+              <img src="./../assets/img/example2.png" alt="Барни" class="rules__example-image" />
+              <p class="subtitle">Если понадобится подсказка, ее можно найти справа под знаком вопроса в окошке для ввода правильного слова.</p>
+              <img src="./../assets/img/example3.png" alt="Барни" class="rules__example-image" />
+              <p class="subtitle">Также можно пропустить ребус, перейти к отгадке следующего, а к зашифрованному слову вернуться позднее.</p>
+              <p class="subtitle">Как только разгадаете ребус, впишите правильный ответ в окошко.</p>
+              <p class="subtitle"><strong>Попробуйте, это весело!</strong></p>
+              <button class="button button--white full js-popupClose">Играть</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./../assets/js/scripts.js" defer></script>
+    <script src="./../assets/js/scripts.js" type="module" defer></script>
   </body>
 </html>
