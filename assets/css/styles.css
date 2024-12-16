@@ -437,6 +437,12 @@ button {
   -webkit-animation: bounce 6s ease-in-out infinite;
           animation: bounce 6s ease-in-out infinite;
 }
+@media (max-width: 767px) {
+  .fly {
+    -webkit-animation: bounce 10s ease-in-out infinite;
+            animation: bounce 10s ease-in-out infinite;
+  }
+}
 
 .sliders {
   position: relative;

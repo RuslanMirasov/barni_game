@@ -76,4 +76,7 @@
 
 .fly {
   animation: bounce 6s ease-in-out infinite;
+  @media (max-width: 767px) {
+    animation: bounce 10s ease-in-out infinite;
+  }
 }
