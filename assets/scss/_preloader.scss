@@ -1,12 +1,12 @@
 @keyframes expandHeight {
   0% {
-    height: 0px;
+    transform: scale(1); /* 100% */
   }
   50% {
-    height: 104px;
+    transform: scale(1.2); /* 120% */
   }
   100% {
-    height: 0px;
+    transform: scale(1); /* 100% */
   }
 }
 
@@ -54,12 +54,12 @@
 
     &:before {
       filter: grayscale(1);
-      opacity: 0.3;
+      opacity: 0;
     }
 
     &:after {
       height: 104px;
-      animation: expandHeight 1s linear infinite;
+      animation: expandHeight 3s linear infinite;
     }
   }
 }

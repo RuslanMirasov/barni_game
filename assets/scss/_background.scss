@@ -16,7 +16,7 @@
     transition: 0.6s;
     opacity: 0;
     &.fly {
-      height: calc(100% + 20px);
+      height: calc(100% + 40px);
     }
   }
   .birthday-bg-image img {
@@ -75,5 +75,5 @@
 }
 
 .fly {
-  animation: bounce 3s ease-in-out infinite;
+  animation: bounce 6s ease-in-out infinite;
 }
