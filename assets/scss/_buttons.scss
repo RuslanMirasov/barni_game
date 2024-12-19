@@ -234,9 +234,24 @@
   z-index: 2;
   right: 16px;
   top: 14px;
-  transition: 0.3s;
+  transition: background 0.3s;
   &:hover {
     background: var(--bg);
+  }
+  &.freez {
+    background: var(--green);
+    pointer-events: none;
+    font-size: 0px;
+    &:before {
+      content: '';
+      display: block;
+      width: 45%;
+      height: 30%;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-48deg) translate(10%, -15%);
+      position: absolute;
+    }
   }
   @media (max-width: 767px) {
     width: 28px;

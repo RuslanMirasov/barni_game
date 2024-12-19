@@ -1,16 +1,17 @@
 const refs = {
   step: localStorage.getItem('step') || 1,
-  stepNavigation: document.querySelector('.step-navigation'),
   preloader: document.querySelector('.preloader'),
   gameform: document.querySelector('[data-gameform]'),
   answerInput: document.querySelector('[data-anwer]'),
   stepInput: document.querySelector('[data-step]'),
+  submitButton: document.querySelector('[data-submit]'),
   skipButton: document.querySelector('[data-skip]'),
   tipButton: document.querySelector('[data-tip]'),
   howToPlayButton: document.querySelector('.how-to-play'),
   modal: document.querySelector('.modal'),
   popup: document.querySelector('.popup'),
   contentParts: document.querySelectorAll('.modal-content'),
+  imagesSlider: document.querySelector('[data-imgslider]'),
 };
 
 const popupConfirmTitles = ['Отличная работа!', 'Прекрасно продвигаетесь!', 'Вы на правильном пути!', 'Поздравляем', 'Поздравляем'];
@@ -49,20 +50,99 @@ const defaultProgress = [
 let swiperText = null;
 let swiperImages = null;
 
-function updateNavigation(step) {
-  if (!refs.stepNavigation) return;
+const updateNavigation = () => {
   const progress = loadProgress();
-  const navLinks = refs.stepNavigation.querySelectorAll('li');
-  navLinks.forEach((link, index) => {
-    link.classList.remove('yellow');
-    if (progress[index].isDone) {
-      link.classList.add('green');
+  const navigation = document.querySelectorAll('.step-navigation span');
+  for (let i = 0; i < progress.length; i += 1) {
+    if (progress[i].isDone) {
+      navigation[i].classList.add('green');
     }
-    if (index === step - 1) {
-      link.classList.add('yellow');
-    }
+  }
+};
+
+const updateUI = step => {
+  const progress = loadProgress();
+  const isStepDone = progress[step].isDone;
+  const rightAnswer = progress[step].answer;
+
+  localStorage.setItem('step', progress[step].step);
+  refs.stepInput.value = progress[step].step;
+
+  if (isStepDone) {
+    refs.submitButton.classList.add('disabled');
+    refs.answerInput.value = rightAnswer;
+    refs.answerInput.classList.add('freez');
+    refs.tipButton.classList.add('freez');
+    refs.imagesSlider.classList.add('freez');
+    return;
+  }
+  refs.submitButton.classList.remove('disabled');
+  refs.answerInput.value = '';
+  refs.answerInput.classList.remove('freez');
+  refs.tipButton.classList.remove('freez');
+  refs.imagesSlider.classList.remove('freez');
+};
+
+if (refs.gameform) {
+  swiperText = new Swiper('.swiper--text', {
+    initialSlide: refs.step - 1,
+    allowTouchMove: false,
+    slidesPerView: 1,
+    loop: true,
+    effect: 'fade',
+    autoHeight: true,
+    fadeEffect: {
+      crossFade: true,
+    },
+    speed: 600,
+    pagination: {
+      el: '.step-navigation',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return `<span class="${className}">${index + 1}</span>`; // Цифры вместо точек
+      },
+    },
+  });
+
+  swiperImages = new Swiper('.swiper--images', {
+    initialSlide: refs.step - 1,
+    allowTouchMove: false,
+    slidesPerView: 1,
+    loop: true,
+    effect: 'slide',
+    speed: 600,
+    pagination: {
+      el: '.step-navigation',
+      clickable: true,
+      renderBullet: function (index, className) {
+        return `<span class="${className}">${index + 1}</span>`; // Цифры вместо точек
+      },
+    },
+    on: {
+      slideNextTransitionStart: function () {
+        updateUI(this.realIndex);
+        updateNavigation();
+      },
+      slidePrevTransitionStart: function () {
+        updateUI(this.realIndex);
+        updateNavigation();
+      },
+    },
   });
 }
+
+const skipStep = () => {
+  const progress = loadProgress();
+  const unresolvedTasks = progress.filter(task => !task.isDone);
+
+  if (unresolvedTasks.length < 1) {
+    redirectToCongratulationsPage();
+    return;
+  }
+
+  swiperText.slideNext();
+  swiperImages.slideNext();
+};
 
 function loadProgress() {
   const savedProgress = localStorage.getItem('progress');
@@ -89,38 +169,14 @@ const init = () => {
       redirectToCongratulationsPage();
       return;
     }
-    console.log(shuldOpenPopup);
     if (!shuldOpenPopup) {
       localStorage.setItem('instructions', 'false');
       openModal('rules');
     }
     localStorage.setItem('step', refs.step);
+    updateNavigation();
   }
 };
-
-if (refs.gameform) {
-  swiperText = new Swiper('.swiper--text', {
-    initialSlide: refs.step - 1,
-    allowTouchMove: false,
-    slidesPerView: 1,
-    loop: true,
-    effect: 'fade',
-    autoHeight: true,
-    fadeEffect: {
-      crossFade: true,
-    },
-    speed: 600,
-  });
-
-  swiperImages = new Swiper('.swiper--images', {
-    initialSlide: refs.step - 1,
-    allowTouchMove: false,
-    slidesPerView: 1,
-    loop: true,
-    effect: 'slide',
-    speed: 600,
-  });
-}
 
 export const ruleStepChange = number => {
   const ruleSteps = document.querySelectorAll('.rules-step');
@@ -138,7 +194,6 @@ export const ruleStepChange = number => {
 const formValidate = (step, answer) => {
   const currentAnswer = answer.toLowerCase();
   const progress = loadProgress();
-
   if (progress[step - 1].answer === currentAnswer) {
     progress[step - 1].isDone = true;
     openModal('confirm');
@@ -148,14 +203,6 @@ const formValidate = (step, answer) => {
   }
 
   openModal('error');
-};
-
-export const goToStep = number => {
-  refs.stepInput.value = number;
-  localStorage.setItem('step', number);
-  swiperText.slideTo(number - 1);
-  swiperImages.slideTo(number - 1);
-  updateNavigation(number);
 };
 
 const handleFormSubmit = e => {
@@ -168,7 +215,6 @@ const handleFormSubmit = e => {
     return;
   }
   formValidate(step, answer);
-  form.reset();
 };
 
 function hidePreloader() {
@@ -246,35 +292,6 @@ if (refs.modal) {
   refs.modal.addEventListener('click', closeModal);
 }
 
-const skipStep = () => {
-  const progress = loadProgress();
-  const unresolvedTasks = progress.filter(task => !task.isDone);
-
-  if (unresolvedTasks.length < 1) {
-    redirectToCongratulationsPage();
-  }
-
-  if (unresolvedTasks.length === 1) {
-    refs.skipButton.classList.add('disabled');
-  }
-
-  let currentStep = Number(localStorage.getItem('step'));
-  const totalSteps = progress.length;
-
-  // Поиск следующего нерешённого шага
-  const findNextUnresolvedStep = currentStep => {
-    for (let i = 1; i <= totalSteps; i++) {
-      const nextStepIndex = (currentStep + i - 1) % totalSteps; // Смещение +1
-      if (!progress[nextStepIndex].isDone) {
-        return nextStepIndex + 1; // Индекс преобразуем в шаг
-      }
-    }
-  };
-  const nextStep = findNextUnresolvedStep(currentStep) || 0;
-
-  goToStep(nextStep);
-};
-
 if (refs.skipButton) {
   refs.skipButton.addEventListener('click', skipStep);
 }
@@ -292,7 +309,5 @@ if (refs.tipButton) {
 }
 
 window.ruleStepChange = ruleStepChange;
-window.goToStep = goToStep;
 
 init();
-updateNavigation(refs.step);

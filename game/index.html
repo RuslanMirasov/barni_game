@@ -52,13 +52,7 @@
         <div class="container">
           <div class="sliders">
             <nav>
-              <ul class="navigation step-navigation">
-                <li onclick="goToStep(1)">1</li>
-                <li onclick="goToStep(2)">2</li>
-                <li onclick="goToStep(3)">3</li>
-                <li onclick="goToStep(4)">4</li>
-                <li onclick="goToStep(5)">5</li>
-              </ul>
+              <div class="navigation step-navigation"></div>
             </nav>
             <div class="swiper swiper--text">
               <div class="swiper-wrapper">
@@ -80,7 +74,7 @@
               </div>
             </div>
 
-            <div class="swiper swiper--images">
+            <div class="swiper swiper--images" data-imgslider>
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <img src="./../assets/img/step1.jpg" alt="Барни" />
@@ -103,9 +97,9 @@
           <form action="/" class="form" data-gameform>
             <button type="button" class="tip-button" data-tip>?</button>
             <input type="hidden" name="step" value="1" data-step />
-            <input type="text" name="answer" placeholder="Введите слово" data-anwer />
+            <input type="text" name="answer" placeholder="Введите слово" value="" data-anwer />
             <ul class="buttons">
-              <li><button type="submit" class="button">Проверить</button></li>
+              <li><button type="submit" class="button" data-submit>Проверить</button></li>
               <li><button type="button" class="button button--yellow" data-skip>Пропустить</button></li>
             </ul>
             <button type="button" class="how-to-play">Как играть?</button>

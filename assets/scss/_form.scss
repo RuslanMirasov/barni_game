@@ -30,6 +30,7 @@
     color: #000;
     outline: none;
     transition: 0.3s;
+    user-select: none;
     &:focus {
       border: 3px solid var(--yellow-shadow);
     }
@@ -38,6 +39,10 @@
     }
     &.invalid {
       border: 3px solid var(--invalid);
+    }
+    &.freez {
+      pointer-events: none;
+      border: 3px solid var(--green);
     }
   }
 
