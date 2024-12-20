@@ -102,6 +102,9 @@ button {
   padding: 0px 20px;
   margin: 0 auto;
 }
+.container.container--1000 {
+  max-width: 1000px;
+}
 @media (max-width: 1365px) {
   .container {
     max-width: 1000px;
@@ -111,9 +114,15 @@ button {
   .container {
     max-width: 600px;
   }
+  .container.container--1000 {
+    max-width: 600px;
+  }
 }
 @media (max-width: 767px) {
   .container {
+    max-width: 360px;
+  }
+  .container.container--1000 {
     max-width: 360px;
   }
 }
@@ -541,6 +550,9 @@ button {
   align-items: center;
   gap: 36px;
   padding: 20px;
+}
+.header nav a {
+  pointer-events: none;
 }
 @media (max-width: 1439px) {
   .header nav {

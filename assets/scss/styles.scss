@@ -103,14 +103,23 @@ button {
   max-width: 1200px;
   padding: 0px 20px;
   margin: 0 auto;
+  &.container--1000 {
+    max-width: 1000px;
+  }
   @media (max-width: 1365px) {
     max-width: 1000px;
   }
   @media (max-width: 1023px) {
     max-width: 600px;
+    &.container--1000 {
+      max-width: 600px;
+    }
   }
   @media (max-width: 767px) {
     max-width: 360px;
+    &.container--1000 {
+      max-width: 360px;
+    }
   }
 }
 

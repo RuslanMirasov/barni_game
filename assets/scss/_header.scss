@@ -11,17 +11,22 @@
     align-items: center;
     gap: 36px;
     padding: 20px;
+    a {
+      pointer-events: none;
+    }
   }
 
   @media (max-width: 1439px) {
     nav {
       gap: 26px;
-      a img {
-        width: 46px;
-      }
-      a:first-child {
+      a {
         img {
-          width: 84px;
+          width: 46px;
+        }
+        &:first-child {
+          img {
+            width: 84px;
+          }
         }
       }
     }

@@ -248,8 +248,10 @@ const openModal = type => {
     popupTitle.innerHTML = popupErrorTitles[currentStep - 1];
     popupButton.innerHTML = 'Попробовать снова';
   } else if (type === 'confirm') {
-    popupTitle.innerHTML = popupConfirmTitles[currentStep - 1];
-    popupSubtitle.innerHTML = popupConfirmSubtitles[currentStep - 1];
+    const progress = loadProgress();
+    const done = progress.filter(task => task.isDone);
+    popupTitle.innerHTML = popupConfirmTitles[done.length];
+    popupSubtitle.innerHTML = popupConfirmSubtitles[done.length];
     popupButton.innerHTML = 'Следующее слово';
   } else if (type === 'tips') {
     const tipImage = `<div><img src="./../assets/img/step${currentStep}.jpg" alt="Барни"/></div>`;
