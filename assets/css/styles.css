@@ -421,6 +421,7 @@ button {
 @media (max-width: 1365px) {
   .background-images .barni-image img {
     left: 52%;
+    height: 82%;
   }
 }
 @media (max-width: 1023px) {
