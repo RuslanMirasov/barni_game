@@ -413,8 +413,14 @@ button {
 }
 @media (max-width: 1439px) {
   .background-images .barni-image img {
+    left: 50%;
     height: 75%;
     min-height: 60px;
+  }
+}
+@media (max-width: 1365px) {
+  .background-images .barni-image img {
+    left: 52%;
   }
 }
 @media (max-width: 1023px) {
